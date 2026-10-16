@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "mcp-scanner",
+          "version": "3.0",
+          "rules": [
+            {
+              "id": "CMD-002",
+              "name": "os.system / os.popen call",
+              "shortDescription": {
+                "text": "os.system / os.popen call"
+              },
+              "help": {
+                "text": "Use subprocess.run([...]) with an argument list."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CMD-002",
+          "level": "error",
+          "message": {
+            "text": "os.system / os.popen call at servers\\command_server\\server.py:27. Evidence: return os.popen(\"echo \" + command).read(). Fix: Use subprocess.run([...]) with an argument list."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "servers/command_server/server.py"
+                },
+                "region": {
+                  "startLine": 27
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
